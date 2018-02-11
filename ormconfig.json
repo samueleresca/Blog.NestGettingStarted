@@ -1,0 +1,10 @@
+{
+  "type": "mssql",
+  "host": "localhost",
+  "port": 1433,
+  "username": "sa",
+  "password": "P@55w0rd",
+  "database": "tempdb",
+  "entities": ["src/Models/**{.ts,.js}"],
+  "synchronize": true
+}
