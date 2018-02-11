@@ -1,3 +1,4 @@
+///<reference path="../Services/ILabelService.ts"/>
 import {Get, Controller, Dependencies} from '@nestjs/common';
 import {ILabelService} from "../Services/ILabelService";
 import {Label} from "../Models/Label";
@@ -15,16 +16,12 @@ export class LabelsController {
     }
 
     @Get()
-     root(): ILabelService {
-        return this.repository;
+     async root():  Promise<Label[]> {
+        return await this.repository.FindAll();
     }
 
     @Post()
-    create(): ILabelService {
-        const label = new Label();
-        label.Code = "Bua";
-        label.IsoCode = "It";
-
-        return this.repository;
+    async create(label: Label): Promise<Label> {
+        return await this.repository.Insert(label);
     }
 }
