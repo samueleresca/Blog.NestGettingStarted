@@ -1,15 +1,20 @@
 import { Component, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { ILabelRepository } from './ILabelRepository';
 import { Repository } from 'typeorm';
 import { Label } from '../Models/Label';
 
 
 @Component()
-export class LabelsRepository {
+export class LabelsRepository implements ILabelRepository {
+
+    private readonly labelRepository: Repository<Label>;
+
     constructor(
         @InjectRepository(Label)
-        private readonly labelRepository: Repository<Label>,
-    ) { }
+            labelRepository: Repository<Label>) {
+        this.labelRepository = labelRepository;
+    }
 
     async FindAll(): Promise<Label[]> {
         return await this.labelRepository.find();
@@ -19,9 +24,9 @@ export class LabelsRepository {
         return await this.labelRepository.findOne({ Code: code });
     }
 
-    async Find(code: string, isoCode: string): Promise<Label> {
-        return await this.labelRepository.findOne({ Code: code, IsoCode: isoCode });
-    }
+    // async Find(code: string, isoCode: string): Promise<Label> {
+    //     return await this.labelRepository.findOne({ Code: code, IsoCode: isoCode });
+    // }
 
     async Where(label: Label): Promise<Label> {
         return await this.labelRepository.findOne(label);
@@ -37,18 +42,18 @@ export class LabelsRepository {
         try {
             await this.labelRepository.updateById(id, label);
             return label;
-        } catch (e: StoreExceptionsInformation) {
+        } catch (e) {
 
         }
     }
 
     async Delete(id: number): Promise<Label> {
         try {
-            var toDelete = this.labelRepository.findOneById(id)
+            const toDelete = this.labelRepository.findOneById(id);
             await this.labelRepository.deleteById(id);
 
             return toDelete;
-        } catch (e: StoreExceptionsInformation) {
+        } catch (e) {
 
         }
     }
