@@ -5,6 +5,9 @@ export class DependencyInstaller {
     public static Installers: Array<object> = [
         {
             provide: 'LabelRepository', useValue: LabelsRepository
+        },
+        {
+            provide: 'isProductionMode', useValue: false
         }
     ];
 };

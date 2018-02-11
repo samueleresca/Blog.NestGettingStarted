@@ -7,7 +7,7 @@ import {DependencyInstaller} from './Infrastructure/DependencyInstaller';
 @Module({
     imports: [TypeOrmModule.forRoot()],
     controllers: [AppController, LabelsController],
-    components: [...DependencyInstaller.Installers],
+    components: DependencyInstaller.Installers,
 
 })
 

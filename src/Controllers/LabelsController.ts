@@ -1,30 +1,30 @@
-import {Get, Controller, Inject} from '@nestjs/common';
+import {Get, Controller, Dependencies} from '@nestjs/common';
 import {ILabelRepository} from "../Repositories/ILabelRepository";
 import {Label} from "../Models/Label";
 import {Post} from "@nestjs/common/utils/decorators/request-mapping.decorator";
+import {LabelsRepository} from "../Repositories/LabelsRepository";
 
 @Controller('Labels')
+@Dependencies(LabelsRepository)
 export class LabelsController {
 
     private repository: ILabelRepository;
 
-    constructor(@Inject('LabelRepository')
-                    repository: ILabelRepository) {
+    constructor(repository: LabelsRepository) {
         this.repository = repository;
     }
 
     @Get()
-    async root(): Promise<Label[]> {
-        return await this.repository.FindAll();
+     root(): ILabelRepository {
+        return this.repository;
     }
 
     @Post()
-    create(): Label {
+    create(): ILabelRepository {
         const label = new Label();
         label.Code = "Bua";
         label.IsoCode = "It";
 
-        this.repository.Insert(label);
-        return label;
+        return this.repository;
     }
 }

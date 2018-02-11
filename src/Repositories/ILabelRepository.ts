@@ -3,7 +3,7 @@ import {Label} from '../Models/Label';
 
 export interface ILabelRepository {
 
-    FindAll(): Promise<Label[]> ;
+    FindAll(): Promise<Label[]>;
 
     Find(code: string): Promise<Label>;
 
