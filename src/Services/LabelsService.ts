@@ -1,12 +1,12 @@
 import { Component, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ILabelRepository } from './ILabelRepository';
+import { ILabelService } from './ILabelService';
 import { Repository } from 'typeorm';
 import { Label } from '../Models/Label';
 
 
 @Component()
-export class LabelsRepository implements ILabelRepository {
+export class LabelsService implements ILabelService {
 
     private readonly labelRepository: Repository<Label>;
 
