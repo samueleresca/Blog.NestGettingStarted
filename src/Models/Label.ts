@@ -1,6 +1,7 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column} from 'typeorm';
 import { BaseEntity } from './BaseEntity';
 
+@Entity()
 export class Label extends BaseEntity {
 
     @Column({ length: 300 })
