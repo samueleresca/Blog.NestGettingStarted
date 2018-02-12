@@ -1,8 +1,8 @@
-import { Component, Inject } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { ILabelService } from './ILabelService';
-import { Repository } from 'typeorm';
-import { Label } from '../Models/Label';
+import {Component} from '@nestjs/common';
+import {InjectRepository} from '@nestjs/typeorm';
+import {ILabelService} from './ILabelService';
+import {Repository} from 'typeorm';
+import {Label} from '../Models/Label';
 
 
 @Component()
@@ -10,9 +10,8 @@ export class LabelsService implements ILabelService {
 
     private readonly labelRepository: Repository<Label>;
 
-    constructor(
-        @InjectRepository(Label)
-            labelRepository: Repository<Label>) {
+    constructor(@InjectRepository(Label)
+                    labelRepository: Repository<Label>) {
         this.labelRepository = labelRepository;
     }
 
@@ -21,12 +20,8 @@ export class LabelsService implements ILabelService {
     }
 
     async Find(code: string): Promise<Label> {
-        return await this.labelRepository.findOne({ Code: code });
+        return await this.labelRepository.findOne({Code: code});
     }
-
-    // async Find(code: string, isoCode: string): Promise<Label> {
-    //     return await this.labelRepository.findOne({ Code: code, IsoCode: isoCode });
-    // }
 
     async Where(label: Label): Promise<Label> {
         return await this.labelRepository.findOne(label);
