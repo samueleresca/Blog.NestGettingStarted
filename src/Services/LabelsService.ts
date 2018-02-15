@@ -1,17 +1,17 @@
 import {Component} from '@nestjs/common';
-import {InjectRepository} from '@nestjs/typeorm';
 import {ILabelService} from './ILabelService';
-import {Repository} from 'typeorm';
 import {Label} from '../Models/Label';
+import {LabelRepository} from "../Repositories/LabelRepository";
+import {Inject} from "@nestjs/common/utils/decorators/inject.decorator";
 
 
 @Component()
 export class LabelsService implements ILabelService {
 
-    private readonly labelRepository: Repository<Label>;
+    private readonly labelRepository: LabelRepository;
 
-    constructor(@InjectRepository(Label)
-                    labelRepository: Repository<Label>) {
+    constructor(@Inject('LabelRepository')
+                    labelRepository: LabelRepository) {
         this.labelRepository = labelRepository;
     }
 
