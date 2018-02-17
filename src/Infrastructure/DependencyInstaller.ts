@@ -1,8 +1,8 @@
-import {LabelsService} from "../Services/LabelsService";
+import {LabelsRepository} from "../Services/LabelsRepository";
 
 export class DependencyInstaller {
 
     public static Installers: Array<object> = [
-        LabelsService
+        LabelsRepository
     ];
 };
