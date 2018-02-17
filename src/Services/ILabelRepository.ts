@@ -1,7 +1,7 @@
-import {ILabelService} from './ILabelService';
+import {ILabelRepository} from './ILabelRepository';
 import {Label} from '../Models/Label';
 
-export interface ILabelService {
+export interface ILabelRepository {
 
     FindAll(): Promise<Label[]>;
 

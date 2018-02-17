@@ -1,10 +1,8 @@
-import {LabelsService} from "../Services/LabelsService";
-import {LabelRepository} from "../Repositories/LabelRepository";
+import {LabelsRepository} from "../Services/LabelsRepository";
 
 export class DependencyInstaller {
 
     public static Installers: Array<object> = [
-        LabelsService,
-        { provide: 'LabelRepository', useClass: LabelRepository }
+        LabelsRepository
     ];
 };
