@@ -3,8 +3,6 @@ import {InjectRepository} from '@nestjs/typeorm';
 import {ILabelRepository} from './ILabelRepository';
 import {Repository} from 'typeorm';
 import {Label} from '../Models/Label';
-import {LabelRepository} from "../Repositories/LabelRepository";
-import {Inject} from "@nestjs/common/utils/decorators/inject.decorator";
 
 
 @Component()
